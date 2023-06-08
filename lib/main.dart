@@ -1,31 +1,32 @@
-import 'package:app/widgets/expenses.dart';
+import 'package:app/screens/tabs.dart';
+
+import 'screens/categories.dart';
 import 'package:flutter/material.dart';
 
-var globalTheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromARGB(255, 38, 109, 232),
-);
+import 'package:google_fonts/google_fonts.dart';
 
-var globalDarkTheme = ColorScheme.fromSeed(
-  brightness: Brightness.dark,
-  seedColor: const Color.fromARGB(255, 5, 99, 125),
+final theme = ThemeData(
+  useMaterial3: true,
+  colorScheme: ColorScheme.fromSeed(
+    brightness: Brightness.dark,
+    seedColor: const Color.fromARGB(255, 131, 57, 0),
+  ),
+  textTheme: GoogleFonts.latoTextTheme(),
 );
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    darkTheme: ThemeData().copyWith(
-      useMaterial3: true,
-      colorScheme: globalDarkTheme,
-    ),
-    theme: ThemeData().copyWith(
-      useMaterial3: true,
-      colorScheme: globalTheme,
-      appBarTheme: const AppBarTheme().copyWith(
-        backgroundColor: globalTheme.onPrimaryContainer,
-        foregroundColor: globalTheme.primaryContainer,
-      ),
-    ),
-    themeMode: ThemeMode.light,
-    home: const Expenses(),
-  ));
+  runApp(const App());
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: theme,
+      home: const TabsScreen(),
+    );
+  }
 }
